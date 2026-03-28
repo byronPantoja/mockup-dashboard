@@ -8,7 +8,7 @@ import {
   Filter,
 } from "lucide-react";
 import StatusBadge from "@/components/ui/StatusBadge";
-import { DEMO_LEADS, formatCurrency } from "@/lib/seed-data";
+import { DEMO_LEADS } from "@/lib/seed-data";
 import type { DemoLead, DemoSortField, DemoStatus, SortDir } from "@/lib/types";
 
 export default function LeadsTable({
@@ -16,7 +16,6 @@ export default function LeadsTable({
 }: {
   onAction?: (lead: DemoLead, action: string) => void;
 }) {
-  const [sortField, setSortField] = useState<DemoSortField>("date");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [statusFilter, setStatusFilter] = useState<DemoStatus>("All");
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
@@ -32,15 +31,8 @@ export default function LeadsTable({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const handleSort = useCallback((field: DemoSortField) => {
-    setSortField((prev) => {
-      if (prev === field) {
-        setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-        return prev;
-      }
-      setSortDir("desc");
-      return field;
-    });
+  const handleSort = useCallback(() => {
+    setSortDir((d) => (d === "asc" ? "desc" : "asc"));
   }, []);
 
   const filtered =
@@ -50,13 +42,10 @@ export default function LeadsTable({
 
   const sorted = [...filtered].sort((a, b) => {
     const mul = sortDir === "asc" ? 1 : -1;
-    if (sortField === "value") return (a.value - b.value) * mul;
     return (new Date(a.date).getTime() - new Date(b.date).getTime()) * mul;
   });
 
-  const SortIcon = ({ field }: { field: DemoSortField }) => {
-    if (sortField !== field)
-      return <ChevronDown size={14} className="text-on-surface/20" />;
+  const SortIcon = () => {
     return sortDir === "asc" ? (
       <ChevronUp size={14} className="text-primary" />
     ) : (
@@ -74,7 +63,7 @@ export default function LeadsTable({
         </div>
         <div className="flex items-center gap-1.5 overflow-x-auto">
           <Filter size={14} className="text-on-surface/30 shrink-0" />
-          {(["All", "Qualified", "Negotiation", "Closed"] as const).map((s) => (
+          {(["All", "New", "Replied", "Meeting", "Closed"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
@@ -96,28 +85,20 @@ export default function LeadsTable({
           <thead>
             <tr className="text-left">
               <th className="px-5 py-3 text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em]">
-                Lead
+                Contact
               </th>
               <th className="px-5 py-3 text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em]">
-                ID
-              </th>
-              <th
-                className="px-5 py-3 text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em] cursor-pointer select-none hover:text-on-surface transition-colors"
-                onClick={() => handleSort("value")}
-              >
-                <span className="flex items-center gap-1">
-                  Value <SortIcon field="value" />
-                </span>
+                Role
               </th>
               <th className="px-5 py-3 text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em]">
                 Status
               </th>
               <th
                 className="px-5 py-3 text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em] cursor-pointer select-none hover:text-on-surface transition-colors"
-                onClick={() => handleSort("date")}
+                onClick={handleSort}
               >
                 <span className="flex items-center gap-1">
-                  Date <SortIcon field="date" />
+                  Date <SortIcon />
                 </span>
               </th>
               <th className="px-5 py-3 w-12" />
@@ -143,14 +124,14 @@ export default function LeadsTable({
                   </div>
                 </td>
                 <td className="px-5 py-3">
-                  <span className="font-mono text-xs text-on-surface/50">
-                    {lead.id}
+                  <span className="text-on-surface/70 text-xs">
+                    {lead.role}
                   </span>
-                </td>
-                <td className="px-5 py-3">
-                  <span className="font-mono font-medium text-on-surface">
-                    {formatCurrency(lead.value)}
-                  </span>
+                  {lead.value && (
+                    <span className="ml-2 rounded-md bg-secondary-container/50 px-1.5 py-0.5 text-[10px] font-medium text-on-secondary-container">
+                      {lead.value}
+                    </span>
+                  )}
                 </td>
                 <td className="px-5 py-3">
                   <StatusBadge status={lead.status} />
@@ -174,7 +155,7 @@ export default function LeadsTable({
                   </button>
                   {openMenuId === lead.id && (
                     <div className="absolute right-4 top-10 z-20 w-44 rounded-xl bg-surface-lowest/90 backdrop-blur-[20px] py-1 shadow-ambient-lg animate-fade-in">
-                      {["Mark as Qualified", "Move to Negotiation", "Close Lead"].map(
+                      {["Mark as Replied", "Schedule Meeting", "Close Lead"].map(
                         (action) => (
                           <button
                             key={action}

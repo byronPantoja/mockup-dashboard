@@ -1,18 +1,18 @@
-import { TrendingUp, ArrowUpRight, Users, Zap } from "lucide-react";
+import { Inbox, MessageSquare, CalendarCheck, Clock } from "lucide-react";
 
 interface Metric {
   label: string;
   value: string;
   sub: string;
   subPositive: boolean;
-  icon: typeof TrendingUp;
+  icon: typeof Inbox;
   iconBg: string;
   mono?: boolean;
   sparkline?: boolean;
 }
 
 function Sparkline({ className }: { className?: string }) {
-  const points = "0,28 14,22 28,25 42,15 56,18 70,10 84,4";
+  const points = "0,24 14,28 28,26 42,16 56,20 70,12 84,6";
   return (
     <svg viewBox="0 0 84 32" fill="none" className={className}>
       <polyline
@@ -30,36 +30,36 @@ function Sparkline({ className }: { className?: string }) {
 
 const METRICS: Metric[] = [
   {
-    label: "Total Revenue",
-    value: "$603,700",
-    sub: "+12.4% from last month",
+    label: "Total Inquiries",
+    value: "35",
+    sub: "+8 from last month",
     subPositive: true,
-    icon: TrendingUp,
+    icon: Inbox,
     iconBg: "bg-secondary-container text-on-secondary-container",
     sparkline: true,
   },
   {
-    label: "Conversion Rate",
-    value: "24.8%",
-    sub: "+3.2% vs last month",
+    label: "Response Rate",
+    value: "94%",
+    sub: "+2% vs last month",
     subPositive: true,
-    icon: ArrowUpRight,
+    icon: MessageSquare,
     iconBg: "bg-primary-container text-primary",
   },
   {
-    label: "Active Leads",
-    value: "284",
-    sub: "47 added this week",
+    label: "Meetings Booked",
+    value: "8",
+    sub: "3 scheduled this week",
     subPositive: false,
-    icon: Users,
+    icon: CalendarCheck,
     iconBg: "bg-tertiary-container text-[#6b3570]",
   },
   {
-    label: "System Latency",
-    value: "14ms",
-    sub: "p99: 42ms",
+    label: "Avg. Response",
+    value: "2.4h",
+    sub: "within business hours",
     subPositive: false,
-    icon: Zap,
+    icon: Clock,
     iconBg: "bg-surface-high text-on-surface/70",
     mono: true,
   },

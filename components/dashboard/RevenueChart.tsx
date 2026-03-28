@@ -1,6 +1,6 @@
-import { REVENUE_DATA } from "@/lib/seed-data";
+import { INBOUND_DATA } from "@/lib/seed-data";
 
-function AreaChart({ data }: { data: typeof REVENUE_DATA }) {
+function AreaChart({ data }: { data: typeof INBOUND_DATA }) {
   const max = Math.max(...data.map((d) => d.value));
   const h = 160;
   const w = 100;
@@ -59,20 +59,22 @@ function AreaChart({ data }: { data: typeof REVENUE_DATA }) {
 }
 
 export default function RevenueChart() {
+  const total = INBOUND_DATA.reduce((sum, d) => sum + d.value, 0);
+
   return (
     <div className="rounded-2xl bg-surface-low p-5">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-sm font-semibold text-on-surface">Revenue Pulse</h2>
-          <p className="text-xs text-on-surface/50 mt-0.5">7-day growth trend</p>
+          <h2 className="text-sm font-semibold text-on-surface">Inbound Trend</h2>
+          <p className="text-xs text-on-surface/50 mt-0.5">Inquiries this week</p>
         </div>
         <span className="rounded-lg bg-secondary-container px-2 py-1 text-xs font-medium text-on-secondary-container">
-          +18.3%
+          {total} total
         </span>
       </div>
-      <AreaChart data={REVENUE_DATA} />
+      <AreaChart data={INBOUND_DATA} />
       <div className="flex justify-between mt-2 px-1">
-        {REVENUE_DATA.map((d) => (
+        {INBOUND_DATA.map((d) => (
           <span
             key={d.day}
             className="text-[10px] font-mono text-on-surface/40"

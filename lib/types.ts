@@ -1,12 +1,13 @@
-// Public demo lead shape (matches current mock data)
+// Public demo lead shape (fake portfolio inbound contacts)
 export interface DemoLead {
   id: string;
   name: string;
   company: string;
-  value: number;
-  status: "Qualified" | "Negotiation" | "Closed";
+  role: string;
+  status: "New" | "Replied" | "Meeting" | "Closed";
   date: string;
   avatar: string;
+  value?: string;
 }
 
 // Real lead from Supabase (employer contacts)
@@ -36,7 +37,7 @@ export interface ToastData {
   exiting: boolean;
 }
 
-export type DemoSortField = "value" | "date";
+export type DemoSortField = "date";
 export type AdminSortField = "created_at" | "name";
 export type SortDir = "asc" | "desc";
 export type DemoStatus = DemoLead["status"] | "All";

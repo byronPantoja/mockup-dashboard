@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardShell from "@/components/dashboard/DashboardShell";
 import MetricCards from "@/components/dashboard/MetricCards";
 import RevenueChart from "@/components/dashboard/RevenueChart";
@@ -13,6 +13,18 @@ import { Calendar } from "lucide-react";
 export default function PublicDashboard() {
   const [contactOpen, setContactOpen] = useState(false);
   const { toasts, addToast, dismissToast } = useToasts();
+
+  // Auto-open contact form for visitors coming from byronpantoja.com
+  useEffect(() => {
+    try {
+      const ref = document.referrer;
+      if (ref && new URL(ref).hostname.endsWith("byronpantoja.com")) {
+        setContactOpen(true);
+      }
+    } catch {
+      // invalid referrer URL — ignore
+    }
+  }, []);
 
   return (
     <>
@@ -27,10 +39,10 @@ export default function PublicDashboard() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h1 className="text-xl font-semibold text-on-surface tracking-tight">
-                  Operations Overview
+                  Lead Tracker
                 </h1>
                 <p className="text-sm text-on-surface/50 mt-0.5">
-                  Real-time pipeline & performance metrics
+                  Inbound inquiries & pipeline overview
                 </p>
               </div>
               <button className="flex items-center gap-2 rounded-xl bg-surface-low px-3 py-2 text-sm text-on-surface/70 hover:bg-surface-high transition-colors self-start sm:self-auto shrink-0">

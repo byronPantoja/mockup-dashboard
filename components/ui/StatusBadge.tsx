@@ -5,21 +5,21 @@ interface StatusBadgeProps {
 
 const STATUS_STYLES: Record<string, string> = {
   // Demo statuses
-  Qualified: "bg-secondary-container text-on-secondary-container",
-  Negotiation: "bg-tertiary-container text-[#6b3570]",
+  New: "bg-primary-container text-[#2a3399]",
+  Replied: "bg-secondary-container text-on-secondary-container",
+  Meeting: "bg-tertiary-container text-[#6b3570]",
   Closed: "bg-surface-high text-on-surface/60",
   // Admin statuses
-  New: "bg-primary-container text-[#2a3399]",
   Reviewed: "bg-tertiary-container text-[#6b3570]",
   Contacted: "bg-secondary-container text-on-secondary-container",
   Archived: "bg-surface-high text-on-surface/60",
 };
 
 const DOT_STYLES: Record<string, string> = {
-  Qualified: "bg-on-secondary-container",
-  Negotiation: "bg-[#6b3570]",
-  Closed: "bg-on-surface/40",
   New: "bg-primary",
+  Replied: "bg-on-secondary-container",
+  Meeting: "bg-[#6b3570]",
+  Closed: "bg-on-surface/40",
   Reviewed: "bg-[#6b3570]",
   Contacted: "bg-on-secondary-container",
   Archived: "bg-on-surface/40",
