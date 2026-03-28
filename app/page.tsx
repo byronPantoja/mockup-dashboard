@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DashboardShell from "@/components/dashboard/DashboardShell";
 import MetricCards from "@/components/dashboard/MetricCards";
 import RevenueChart from "@/components/dashboard/RevenueChart";
@@ -11,20 +11,8 @@ import { ToastContainer, useToasts } from "@/components/ui/Toast";
 import { Calendar } from "lucide-react";
 
 export default function PublicDashboard() {
-  const [contactOpen, setContactOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(true);
   const { toasts, addToast, dismissToast } = useToasts();
-
-  // Auto-open contact form for visitors coming from byronpantoja.com
-  useEffect(() => {
-    try {
-      const ref = document.referrer;
-      if (ref && new URL(ref).hostname.endsWith("byronpantoja.com")) {
-        setContactOpen(true);
-      }
-    } catch {
-      // invalid referrer URL — ignore
-    }
-  }, []);
 
   return (
     <>

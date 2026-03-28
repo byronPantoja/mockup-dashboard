@@ -98,8 +98,19 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
             <h3 className="text-lg font-semibold text-on-surface mb-1">
               Get in touch
             </h3>
-            <p className="text-sm text-on-surface/50 mb-6">
+            <p className="text-sm text-on-surface/50 mb-1">
               I&apos;d love to hear about your project or opportunity.
+            </p>
+            <p className="text-xs text-on-surface/30 mb-5">
+              Contact form for{" "}
+              <a
+                href="https://byronpantoja.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-primary transition-colors"
+              >
+                byronpantoja.com
+              </a>
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
