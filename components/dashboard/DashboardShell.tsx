@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 import DemoBanner from "./DemoBanner";
@@ -18,11 +18,9 @@ export default function DashboardShell({
   onLogout,
   children,
 }: DashboardShellProps) {
-  const [activeNav, setActiveNav] = useState("Dashboard");
-
   return (
     <div className="flex h-screen overflow-hidden bg-surface">
-      <Sidebar activeNav={activeNav} onNavChange={setActiveNav} />
+      <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {mode === "public" && <DemoBanner />}

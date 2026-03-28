@@ -1,26 +1,6 @@
-"use client";
+import { Activity, LayoutDashboard } from "lucide-react";
 
-import {
-  LayoutDashboard,
-  GitBranch,
-  Package,
-  Settings,
-  Activity,
-} from "lucide-react";
-
-const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: "Dashboard" },
-  { icon: GitBranch, label: "Lead Pipeline" },
-  { icon: Package, label: "Inventory" },
-  { icon: Settings, label: "Settings" },
-];
-
-interface SidebarProps {
-  activeNav: string;
-  onNavChange: (label: string) => void;
-}
-
-export default function Sidebar({ activeNav, onNavChange }: SidebarProps) {
+export default function Sidebar() {
   return (
     <aside className="w-60 shrink-0 bg-surface-low/80 backdrop-blur-[20px] flex flex-col">
       {/* Logo */}
@@ -37,24 +17,11 @@ export default function Sidebar({ activeNav, onNavChange }: SidebarProps) {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {NAV_ITEMS.map((item) => {
-          const active = activeNav === item.label;
-          return (
-            <button
-              key={item.label}
-              onClick={() => onNavChange(item.label)}
-              className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors ${
-                active
-                  ? "bg-primary-container/30 text-primary font-medium"
-                  : "text-on-surface/50 hover:text-on-surface hover:bg-surface-high/50"
-              }`}
-            >
-              <item.icon size={18} />
-              {item.label}
-            </button>
-          );
-        })}
+      <nav className="flex-1 px-3 py-4">
+        <div className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm bg-primary-container/30 text-primary font-medium">
+          <LayoutDashboard size={18} />
+          Dashboard
+        </div>
       </nav>
 
       {/* System Status */}
