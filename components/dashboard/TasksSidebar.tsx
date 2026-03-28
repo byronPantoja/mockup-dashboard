@@ -27,7 +27,7 @@ export default function TasksSidebar({
   );
 
   return (
-    <aside className="w-72 shrink-0 bg-surface-lowest p-5 space-y-4">
+    <aside className="w-full xl:w-72 shrink-0 bg-surface-lowest p-4 sm:p-5 space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-on-surface">Upcoming Tasks</h2>
         <span className="rounded-lg bg-primary-container/30 px-2 py-0.5 text-xs font-medium text-primary">

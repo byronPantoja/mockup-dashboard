@@ -99,7 +99,7 @@ export default function AdminLeadsTable({
   return (
     <div className="rounded-2xl bg-surface-low">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 sm:px-5 py-4">
         <div>
           <h2 className="text-sm font-semibold text-on-surface">
             Inbound Leads
@@ -108,14 +108,14 @@ export default function AdminLeadsTable({
             {filtered.length} total
           </p>
         </div>
-        <div className="flex items-center gap-1.5">
-          <Filter size={14} className="text-on-surface/30" />
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <Filter size={14} className="text-on-surface/30 shrink-0" />
           {(["All", "New", "Reviewed", "Contacted", "Archived"] as const).map(
             (s) => (
               <button
                 key={s}
                 onClick={() => setStatusFilter(s)}
-                className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${
+                className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors whitespace-nowrap ${
                   statusFilter === s
                     ? "bg-primary-container/30 text-primary"
                     : "text-on-surface/50 hover:bg-surface-high"

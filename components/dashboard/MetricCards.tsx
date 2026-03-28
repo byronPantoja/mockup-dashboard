@@ -67,7 +67,7 @@ const METRICS: Metric[] = [
 
 export default function MetricCards() {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
       {METRICS.map((m) => (
         <div
           key={m.label}

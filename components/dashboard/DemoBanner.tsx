@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 
 export default function DemoBanner() {
   return (
-    <div className="shrink-0 flex items-center justify-center gap-2 bg-primary-container/20 px-4 py-2 text-xs font-medium text-primary">
+    <div className="shrink-0 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 bg-primary-container/20 px-4 py-2 text-xs font-medium text-primary text-center">
       <span>Demo Mode: This dashboard is visualizing live simulated data.</span>
       <a
         href="https://github.com/byronpantoja/mockup-dashboard"

@@ -103,7 +103,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em] mb-1.5">
                     Name *
@@ -129,7 +129,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[0.6875rem] font-medium text-on-surface/50 uppercase tracking-[0.05em] mb-1.5">
                     Company

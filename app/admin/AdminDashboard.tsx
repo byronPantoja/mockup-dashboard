@@ -69,7 +69,7 @@ export default function AdminDashboard({ initialLeads }: AdminDashboardProps) {
   return (
     <>
       <DashboardShell mode="admin" onLogout={handleLogout}>
-        <div className="flex-1 p-6 space-y-6">
+        <div className="flex-1 p-4 sm:p-6 space-y-6">
           {/* Page header */}
           <div>
             <h1 className="text-xl font-semibold text-on-surface tracking-tight">
@@ -83,11 +83,11 @@ export default function AdminDashboard({ initialLeads }: AdminDashboardProps) {
           <AdminMetricCards leads={leads} />
 
           {/* Status chart + Leads table */}
-          <div className="grid grid-cols-5 gap-4">
-            <div className="col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+            <div className="lg:col-span-2">
               <LeadStatusChart leads={leads} />
             </div>
-            <div className="col-span-3">
+            <div className="lg:col-span-3">
               <AdminLeadsTable
                 leads={leads}
                 onStatusChange={handleStatusChange}
