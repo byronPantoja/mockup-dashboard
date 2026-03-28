@@ -1,6 +1,6 @@
 # BaseLine — Operations Dashboard with Supabase Backend
 
-**Live:** [mockup-dashboard.vercel.app](https://mockup-dashboard.vercel.app)
+**Live:** [mockup-dashboard-baseline.vercel.app](https://mockup-dashboard-baseline.vercel.app)
 
 A full-stack operations dashboard built with Next.js 16, Supabase, and a custom borderless design system. It features a public-facing demo mode with hardcoded seed data and a private admin panel with real-time lead management backed by Postgres. This is the capstone project in a three-part portfolio demonstrating my ability to ship production-quality web applications.
 
